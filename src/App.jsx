@@ -6,6 +6,7 @@ import PomoStartWidget from "./components/PomoStartWidget"
 import FocusScreen from "./components/FocusScreen"
 import SessionHistory from "./components/SessionHistory"
 import DailyGoal from "./components/DailyGoal"
+import RecentSessions from "./components/RecentSessions"
 
 export default function App() {
 
@@ -40,6 +41,7 @@ export default function App() {
           </div>
           
           <SessionHistory/>
+          <RecentSessions/>
           
 
         </div>
