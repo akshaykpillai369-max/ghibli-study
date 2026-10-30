@@ -1,12 +1,47 @@
 import { Play, Pause, X, Volume2, Music } from "lucide-react";
+import { useState, useEffect } from "react";
+
 
 export default function FocusScreen({onClose}){
+
+    const[time, setTime] = useState(25 *60)
+    const [isRunning, setIsRunning] = useState(true)
+    const [showStopConfirm, setShowStopConfirm] = useState(false)
+
+    function handleStop(){
+
+        if(time>0){
+
+            setShowStopConfirm(true)
+        }
+        else{
+            onClose()
+        }
+    }
+
+    useEffect(() => {
+
+        if(!isRunning || time <=0) return
+
+        const interval = setInterval(() => {
+
+            setTime((previousTime) => previousTime -1)
+        },1000)
+
+        return () => clearInterval(interval)
+    }, [isRunning, time])
+
+    const minutes = Math.floor(time/ 60)
+    const remainingTime = time % 60
+
+    const formattedTime = `${String(minutes).padStart(2, '0')}:${String(remainingTime).padStart(2,'0')}`
+
 
     return(
 
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-green-950 text-white">
 
-            <button onClick={onClose} className="absolute right-6 top-6 rounded-full bg-white/10 p-3 transition hover:bg-white/20">
+            <button onClick={handleStop} className="absolute right-6 top-6 rounded-full bg-white/10 p-3 transition hover:bg-white/20">
                 <X size={24} />
             </button>
 
@@ -24,14 +59,18 @@ export default function FocusScreen({onClose}){
 
                 <div className="my-12">
                     <p className="text-8xl font-bold tabular-nums">
-                        25:00
+                        {formattedTime}
                     </p>
 
                     <p className="mt-3 text-sm uppercase tracking-[0.3em] text-green-200">
                         Focus session
                     </p>
 
-                <div className="flex items-center justify-center gap-4">
+                <div className="mt-3 flex items-center justify-center gap-4">
+
+                    <button onClick={() => setIsRunning(!isRunning)} className="rounded-full bg-lime-200 p-5 text-green-950 transition hover:scale-105">
+                        { isRunning ? <Pause size={28} /> : <Play size={28} />}
+                    </button>
 
                     <button className="rounded-full border border-white/20 bg-white/10 p-5 transition hover:bg-white/20">
                         <Volume2 size={26} />
@@ -41,9 +80,36 @@ export default function FocusScreen({onClose}){
                 <p className="mt-6 text-sm text-green-200">
                     Lofi music · Deep focus
                 </p>
-                
+
                 </div>       
             </div>
+
+            {showStopConfirm && (
+
+                <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/70 p-5 backdrop-blur-sm">
+                    <div className="w-full max-w-sm rounded-3xl border border-white/20 bg-green-950 p-7 text-center shadow-2xl">
+                    <h3 className="text-xl font-bold text-white">
+                        Don't give up just yet
+                        </h3>
+
+                        <p className="mt-3 text-sm leading-relaxed text-green-200">
+
+                            You came here to focus, and you deserve to finish what you started. Don't let a moment of distraction decide for you. Take a deep breath, and ask yourself: do I really need to stop now?
+
+                        </p>
+
+                        <div className="mt-6 flex gap-3">
+                            <button onClick={() => setShowStopConfirm(false)} className="flex-1 rounded-xl border border-white/20 px-4 py-3 text-white transition hover:bg-white/10">
+                                Keep focusing 
+                            </button>
+
+                            <button onClick={onClose} className="flex rounded-xl bg-lime-200 px-4 py-3 font-semibold text-green-950 transition hover:bg-lime-100">
+                                Stop session
+                            </button>
+                        </div>
+                        </div>
+                </div>
+            )}
         </div>
     )
 
