@@ -40,7 +40,7 @@ export default function FocusScreen({onClose}){
 
     return(
 
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-green-950 text-white">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-y-auto bg-green-950 px-4 py-6 text-white">
 
             <button onClick={handleStop} className="absolute right-6 top-6 rounded-full bg-white/10 p-3 transition hover:bg-white/20">
                 <X size={24} />
