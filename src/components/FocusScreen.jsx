@@ -5,9 +5,11 @@ import MusicPlayer from "./MusicPlayer";
 
 export default function FocusScreen({onClose}){
 
-    const[time, setTime] = useState(25 *60)
+    const[time, setTime] = useState(5)
     const [isRunning, setIsRunning] = useState(true)
     const [showStopConfirm, setShowStopConfirm] = useState(false)
+    const [sessionSaved, setSessionSaved] = useState(false)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     function handleStop(){
 
@@ -32,10 +34,67 @@ export default function FocusScreen({onClose}){
         return () => clearInterval(interval)
     }, [isRunning, time])
 
+    useEffect(() => {
+
+        if(time !== 0) return
+        setIsCompleted(true)
+    },[time])
+
+    useEffect(()=> {
+
+        if(time !== 0 || sessionSaved) return
+
+        const completedSession = {
+
+            date : new Date().toISOString(),
+            duration: 25
+        }
+
+        const history = JSON.parse(localStorage.getItem('ghibli-session-history') || '[]')
+
+        history.push(completedSession)
+
+        localStorage.setItem('ghibli-session-history', JSON.stringify(history))
+
+        setSessionSaved(true)
+    }, [time, sessionSaved])
+
     const minutes = Math.floor(time/ 60)
     const remainingTime = time % 60
 
     const formattedTime = `${String(minutes).padStart(2, '0')}:${String(remainingTime).padStart(2,'0')}`
+
+    if(isCompleted){
+
+        return(
+
+            <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-green-950 px-5 text-center text-white">
+                <div className="mb-6 text-6xl">
+                    🌿
+                </div>
+
+                <h2 className="text-4xl font-bold text-lime-200">
+                    Congratulations
+                </h2>
+
+                <p className="mt-4 max-w-md text-lg text-green-100">
+                    You did it! You completed your focus session. We're proud of you! Now take a little break. You've earned it.
+                </p>
+
+                <p className="mt-6 text-5xl font-bold tabular-nums">
+                    05:00
+                </p>
+
+                <p className="mt-2 text-sm uppercase tracking-widesttext-green-200">
+                    Time for a peaceful break
+                </p>
+
+                <button onClick={onClose} className="mt-8 rounded-xl bg-lime-200 px-8 py-3 font-semibold text-green-950 transition hover:bg-lime-100">
+                    Enjoy your break
+                </button>
+            </div>
+        )
+    }
 
 
     return(
