@@ -5,23 +5,33 @@ export default function StreakTracker(){
 
     const [currentStreak, setCurrentStreak] = useState(0)
     const [longestStreak, setLongestStreak] = useState(0)
+    const [studiedToday, setStudiedToday] = useState(false)
 
-    useEffect(() => {
+    function calculateStreak(){
 
         const history = JSON.parse(localStorage.getItem('ghibli-session-history') || '[]')
         const studyDates = [...new Set(history.map(session => new Date(session.date).toDateString()))]
         const today = new Date()
         today.setHours(0,0,0,0)
 
+
+        const yesterday = new Date(today)
+        yesterday.setDate(today.getDate() - 1 )
+        const hasStudiedToday = studyDates.includes(today.toDateString())
+        setStudiedToday(hasStudiedToday)
+        const hasStudiedYesterday = studyDates.includes(yesterday.toDateString())
+        const startDate = hasStudiedToday ? today : hasStudiedYesterday ? yesterday : null
         let streak = 0
+        let daysBack = 0
 
-        while(true){
+        while(startDate){
 
-            const checkDate = new Date(today)
-            checkDate.setDate(today.getDate() - streak)
+            const checkDate = new Date(startDate)
+            checkDate.setDate(startDate.getDate() - daysBack)
             if(studyDates.includes(checkDate.toDateString())){
 
                 streak++
+                daysBack++
             }
             else{
 
@@ -50,7 +60,16 @@ export default function StreakTracker(){
         })
 
         setLongestStreak(longest)
-    }, []) 
+    } 
+
+    useEffect(()=> {
+
+        calculateStreak()
+        window.addEventListener('ghibli-session-updated', calculateStreak)
+        return () => {
+            window.removeEventListener('ghibli-session-updated', calculateStreak)
+        }
+    }, [])
 
     return(
         <div className="rounded-3xl border border-white/20 bg-green-950/80 p-6 text-white shadow-xl backdrop-blur-md">
@@ -74,7 +93,7 @@ export default function StreakTracker(){
 
             <div className="mt-4 flex items-center gap-2 text-sm text-green-200">
                 <CalendarCheck size={18} />
-                {currentStreak > 0 ? "You've studied today. Keep it going!" : "Complete a focus session today to start your streak."}
+                {studiedToday ? "You've studied today. Keep it going!" : currentStreak > 0 ? "Your streak is still alive. Study today to keep it going!" : "Complete a focus session today to start your streak."}
             </div>
         </div>
     )
