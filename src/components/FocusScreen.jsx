@@ -10,6 +10,8 @@ export default function FocusScreen({onClose}){
     const [showStopConfirm, setShowStopConfirm] = useState(false)
     const [sessionSaved, setSessionSaved] = useState(false)
     const [isCompleted, setIsCompleted] = useState(false)
+    const [breakTime, setBreakTime] = useState(5)
+    const [isBreakRunning, setIsBreakRunning] = useState(false)
 
     function handleStop(){
 
@@ -38,7 +40,19 @@ export default function FocusScreen({onClose}){
 
         if(time !== 0) return
         setIsCompleted(true)
+        setIsBreakRunning(true)
     },[time])
+
+    useEffect(() => {
+
+        if(!isBreakRunning || breakTime <=0) return
+
+        const interval = setInterval(()=> {
+            setBreakTime((previousTime) => previousTime-1)
+        },1000)
+
+        return () => clearInterval(interval)
+    },[isBreakRunning, breakTime])
 
     useEffect(()=> {
 
@@ -61,8 +75,11 @@ export default function FocusScreen({onClose}){
 
     const minutes = Math.floor(time/ 60)
     const remainingTime = time % 60
-
     const formattedTime = `${String(minutes).padStart(2, '0')}:${String(remainingTime).padStart(2,'0')}`
+
+    const breakMinutes = Math.floor(breakTime/60)
+    const breakSeconds = breakTime % 60
+    const formattedBreakTime = `${String(breakMinutes).padStart(2, '0')}: ${String(breakSeconds).padStart(2,'0')}`
 
     if(isCompleted){
 
@@ -82,7 +99,7 @@ export default function FocusScreen({onClose}){
                 </p>
 
                 <p className="mt-6 text-5xl font-bold tabular-nums">
-                    05:00
+                    {formattedBreakTime}
                 </p>
 
                 <p className="mt-2 text-sm uppercase tracking-widesttext-green-200">
