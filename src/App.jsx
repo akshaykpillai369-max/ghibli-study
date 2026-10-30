@@ -4,6 +4,7 @@ import Welcome from './components/Welcome'
 import Greeting from "./components/Greeting"
 import PomoStartWidget from "./components/PomoStartWidget"
 import FocusScreen from "./components/FocusScreen"
+import SessionHistory from "./components/SessionHistory"
 
 export default function App() {
 
@@ -34,6 +35,7 @@ export default function App() {
             <Greeting name={userName}/>
             <PomoStartWidget onstart={() => setIsFocusOpen(true)} />
           </div>
+          <SessionHistory/>
           
 
         </div>
