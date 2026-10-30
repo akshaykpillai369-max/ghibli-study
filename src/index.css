@@ -1,1 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+:root{
+
+  font-family: 'Inter', sans-serif;
+
+  --forest-dark: #263d32;
+  --forest: #46664a;
+  --forest-light: #789477;
+  --sage: #a8b99a;
+  --cream: #f4f0df;
+  --cream-dark: #e8e2cd;
+  --brown: #806b50;
+  --text-dark: #293b30;
+  --text-muted: #788276;
+
+  color: var(--text-dark);
+  background: var(--cream);
+}
+
+* {
+
+  box-sizing: border-box;
+}
+
+body{
+
+  margin: 0;
+  min-width:320px;
+  min-height: 100vh;
+}
+
+button, input{
+
+  font: inherit;
+}
+
+button{
+
+  cursor: pointer;
+}
+
+::selection{
+
+  background: var(--sage);
+  color: var(--forest-dark);
+}
