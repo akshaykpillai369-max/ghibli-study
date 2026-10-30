@@ -5,6 +5,7 @@ import Greeting from "./components/Greeting"
 import PomoStartWidget from "./components/PomoStartWidget"
 import FocusScreen from "./components/FocusScreen"
 import SessionHistory from "./components/SessionHistory"
+import DailyGoal from "./components/DailyGoal"
 
 export default function App() {
 
@@ -31,10 +32,13 @@ export default function App() {
         <div className="relative z-10 min-h-screen p-6 md:p-8">
 
           <Header/>
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-[1fr_280px] md:items-center">
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-[2fr_1fr_1fr]">
             <Greeting name={userName}/>
+            <DailyGoal/> 
             <PomoStartWidget onstart={() => setIsFocusOpen(true)} />
+             
           </div>
+          
           <SessionHistory/>
           
 
