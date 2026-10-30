@@ -12,6 +12,7 @@ export default function FocusScreen({onClose}){
     const [isCompleted, setIsCompleted] = useState(false)
     const [breakTime, setBreakTime] = useState(5)
     const [isBreakRunning, setIsBreakRunning] = useState(false)
+    const [isBreakCompleted, setIsBreakCompleted] = useState(false)
 
     function handleStop(){
 
@@ -56,6 +57,14 @@ export default function FocusScreen({onClose}){
 
     useEffect(()=> {
 
+        if(breakTime !==0) return
+
+        setIsBreakCompleted(true)
+        setIsBreakRunning(false)
+    }, [breakTime])
+
+    useEffect(()=> {
+
         if(time !== 0 || sessionSaved) return
 
         const completedSession = {
@@ -80,6 +89,43 @@ export default function FocusScreen({onClose}){
     const breakMinutes = Math.floor(breakTime/60)
     const breakSeconds = breakTime % 60
     const formattedBreakTime = `${String(breakMinutes).padStart(2, '0')}: ${String(breakSeconds).padStart(2,'0')}`
+
+    if(isBreakCompleted){
+
+        return (
+
+            <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-green-950 text-center text-white">
+                <div className="mb-6 text-6xl">🌿</div>
+
+                <h2 className="text-4xl font-bold text-lime-200">
+                    Break completed!
+                </h2>
+
+                <p className="mt-4 max-w-md text-lg text-green-100">
+
+                    Yor mind has had some time to rest.Ready for another focus session ?
+                </p>
+
+                <button onClick={()=> {
+                    setTime(25 * 60) 
+                    setIsRunning(true) 
+                    setIsCompleted(false)
+                    setBreakTime(5 * 60)
+                    setIsBreakCompleted(false)
+                    setIsBreakRunning(fasle)
+                    setSessionSaved(false)
+                    }} className="mt-8 rounded-xl bg-lime-200 px-8 py-3 font-semibold text-green-950 transition hover:bg-lime-100 ">
+
+                        Start another session
+
+                </button>
+
+                <button onClick={onClose} className="mt-3 text-sm text-green-200 hover:text-white">
+                    Leave focus mode
+                </button>
+            </div>
+        )
+    }
 
     if(isCompleted){
 
