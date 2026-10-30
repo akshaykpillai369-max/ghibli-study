@@ -27,6 +27,7 @@ export default function MusicPlayer(){
 
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [volume, setVolume] = useState(0.5)
 
     const audioRef = useRef(null)
 
@@ -48,6 +49,14 @@ export default function MusicPlayer(){
             }
         
     }, [isPlaying, currentTrack])
+
+    useEffect(()=> {
+
+        if(audioRef.current){
+
+            audioRef.current.volume = volume
+        }
+    }, [volume])
 
     return(
 
@@ -94,6 +103,17 @@ export default function MusicPlayer(){
                 <button onClick={() => setIsPlaying(!isPlaying)} className="rounded-full bg-lime-200 p-4 text-green-950 transition hover:scale-105">
                     {isPlaying ? <Pause size={22} /> : <Play size={22} />}
                 </button>
+
+                <div className="mt-5">
+
+                    <div className="mb-2 flex justify-between text-sm text-green-200">
+
+                        <label htmlFor="music-volume">Volume</label>
+                        <span>{Math.round(volume * 100)} % </span>
+                    </div>
+
+                    <input id="music-volume" type="range" min={0} max={1} step={0.01} value={volume} onChange={(e)=> setVolume(Number(e.target.value))} className="w-full accent-lime-200"/>
+                </div>
             </div>
         </div>
     )
