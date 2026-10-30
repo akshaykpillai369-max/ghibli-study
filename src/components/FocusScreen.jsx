@@ -1,5 +1,6 @@
-import { Play, Pause, X, Volume2, Music } from "lucide-react";
+import { Play, Pause, X, Music } from "lucide-react";
 import { useState, useEffect } from "react";
+import MusicPlayer from "./MusicPlayer";
 
 
 export default function FocusScreen({onClose}){
@@ -53,11 +54,12 @@ export default function FocusScreen({onClose}){
                     Enter your focus zone
                 </h2>     
 
-                <p className="mt-2 text-green-200">
+                <p className="mt-2 text-green-200 mb-3">
                     Let the world wait. This time is yours
                 </p>    
+                <MusicPlayer isActive={true}/>
 
-                <div className="my-12">
+                <div className="my-8 sm:my-10">
                     <p className="text-8xl font-bold tabular-nums">
                         {formattedTime}
                     </p>
@@ -70,10 +72,6 @@ export default function FocusScreen({onClose}){
 
                     <button onClick={() => setIsRunning(!isRunning)} className="rounded-full bg-lime-200 p-5 text-green-950 transition hover:scale-105">
                         { isRunning ? <Pause size={28} /> : <Play size={28} />}
-                    </button>
-
-                    <button className="rounded-full border border-white/20 bg-white/10 p-5 transition hover:bg-white/20">
-                        <Volume2 size={26} />
                     </button>
                 </div>
 
@@ -103,7 +101,7 @@ export default function FocusScreen({onClose}){
                                 Keep focusing 
                             </button>
 
-                            <button onClick={onClose} className="flex rounded-xl bg-lime-200 px-4 py-3 font-semibold text-green-950 transition hover:bg-lime-100">
+                            <button onClick={onClose} className="flex-1 rounded-xl bg-lime-200 px-4 py-3 font-semibold text-green-950 transition hover:bg-lime-100">
                                 Stop session
                             </button>
                         </div>

@@ -68,7 +68,7 @@ export default function MusicPlayer({isActive}){
 
     return(
 
-        <div className="w-full max-w-sm rounded-3xl border border-white/20 bg-green-950/60 p-6 text-white shadow-xl backdrop-blur-md">
+        <div className="w-full max-w-sm rounded-3xl border border-white/20 bg-green-950/60 p-5 text-white shadow-xl backdrop-blur-md">
 
             <audio src={currentTrack.src} ref={audioRef} preload="metadata" />
 
@@ -83,7 +83,7 @@ export default function MusicPlayer({isActive}){
                 </div>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-4">
                 <label htmlFor="music-track" className="mb-2 block text-sm text-green-200">
                     Choose your music
                 </label>
