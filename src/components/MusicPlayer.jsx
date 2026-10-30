@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect} from "react";
 import { Play, Pause, Music } from "lucide-react";
 
 const tracks = [
@@ -23,10 +23,10 @@ const tracks = [
     },
 ]
 
-export default function MusicPlayer(){
+export default function MusicPlayer({isActive}){
 
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
-    const [isPlaying, setIsPlaying] = useState(false)
+    const [isPlaying, setIsPlaying] = useState(isActive)
     const [volume, setVolume] = useState(0.5)
 
     const audioRef = useRef(null)
@@ -38,17 +38,24 @@ export default function MusicPlayer(){
         const audio = audioRef.current
         if(!audio) return
 
+        if(!isActive){
+            audio.pause()
+            audio.currentTime = 0
+            setIsPlaying(false)
+            return
+        }
+
         if(isPlaying){
 
-            audio.play().catch(()=> {
-                setIsPlaying(false)
-            })
+            audio.play().catch(()=> setIsPlaying(false))
         }
-            else{
-                audio.pause()
-            }
-        
-    }, [isPlaying, currentTrack])
+        else{
+
+            audio.pause()
+        }
+    }, [isActive, isPlaying, currentTrack])
+
+    
 
     useEffect(()=> {
 
@@ -58,9 +65,10 @@ export default function MusicPlayer(){
         }
     }, [volume])
 
+
     return(
 
-        <div className="w-full-max-w-sm rounded-3xl border border-white/20 bg-green-950/60 p-6 text-white shadow-xl backdrop-blur-md">
+        <div className="w-full max-w-sm rounded-3xl border border-white/20 bg-green-950/60 p-6 text-white shadow-xl backdrop-blur-md">
 
             <audio src={currentTrack.src} ref={audioRef} preload="metadata" />
 
@@ -76,7 +84,7 @@ export default function MusicPlayer(){
             </div>
 
             <div className="mt-6">
-                <label className="mb-2 block text-sm text-green-200">
+                <label htmlFor="music-track" className="mb-2 block text-sm text-green-200">
                     Choose your music
                 </label>
 
@@ -100,7 +108,7 @@ export default function MusicPlayer(){
                     </p>
                 </div>
 
-                <button onClick={() => setIsPlaying(!isPlaying)} className="rounded-full bg-lime-200 p-4 text-green-950 transition hover:scale-105">
+                <button onClick={() => setIsPlaying(previous => !previous)} disabled={!isActive} className="rounded-full bg-lime-200 p-4 text-green-950 transition hover:scale-105">
                     {isPlaying ? <Pause size={22} /> : <Play size={22} />}
                 </button>
 
