@@ -30,11 +30,11 @@ export default function Welcome({onSave}) {
                 What should I call you, traveller ?
             </p>
 
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" maxLength={30} className="mt-6 w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-lime-200" autoFocus/>
+            <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" maxLength={30} className="mt-6 w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-lime-200" autoFocus/>
             
-            <button type="submit" disabled={!name.trim()} className="mt-4 w-full rounded-xl bg-lime-200 px-4 py-3 font-semibold text-green-95 transition hover:bg-lime-100 disabled:cursor-not-allowed disabled:opacity-40">
+            <button type="submit" disabled={!name.trim()} className="mt-4 w-full rounded-xl bg-lime-200 px-4 py-3 font-semibold text-green-950 transition hover:bg-lime-100 disabled:cursor-not-allowed disabled:opacity-40">
 
-                Enter to your Inner Peace
+                Enter to your peacful forest
 
                    
             </button> 
