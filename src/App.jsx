@@ -1,3 +1,5 @@
+import Header from "./components/Header"
+
 export default function App() {
   
   return (
@@ -10,11 +12,10 @@ export default function App() {
 
         <div className="absolute inset-0 bg-black/30"/>
 
-        <div className="relative z-10 min-h-screen flex items-center justify-center">
+        <div className="relative z-10 min-h-screen p-6 md:p-8">
 
-          <h1 className="text-5xl font-bold text-white drop-shadow-lg">
-            Ghibli Study
-          </h1>
+          <Header/>
+
         </div>
       
     </main>
