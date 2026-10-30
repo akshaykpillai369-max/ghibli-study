@@ -78,6 +78,7 @@ export default function FocusScreen({onClose}){
         history.push(completedSession)
 
         localStorage.setItem('ghibli-session-history', JSON.stringify(history))
+        window.dispatchEvent(new Event('ghibli-session-updated'))
 
         setSessionSaved(true)
     }, [time, sessionSaved])
@@ -88,7 +89,7 @@ export default function FocusScreen({onClose}){
 
     const breakMinutes = Math.floor(breakTime/60)
     const breakSeconds = breakTime % 60
-    const formattedBreakTime = `${String(breakMinutes).padStart(2, '0')}: ${String(breakSeconds).padStart(2,'0')}`
+    const formattedBreakTime = `${String(breakMinutes).padStart(2, '0')}:${String(breakSeconds).padStart(2,'0')}`
 
     if(isBreakCompleted){
 
@@ -112,7 +113,7 @@ export default function FocusScreen({onClose}){
                     setIsCompleted(false)
                     setBreakTime(5 * 60)
                     setIsBreakCompleted(false)
-                    setIsBreakRunning(fasle)
+                    setIsBreakRunning(false)
                     setSessionSaved(false)
                     }} className="mt-8 rounded-xl bg-lime-200 px-8 py-3 font-semibold text-green-950 transition hover:bg-lime-100 ">
 
