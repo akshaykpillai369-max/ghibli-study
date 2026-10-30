@@ -51,7 +51,7 @@ export default function MusicPlayer(){
 
     return(
 
-        <div className="w-fullmax-w-sm rounded-3xl border border-white/20 bg-green-950/60 p-6 text-white shadow-xl backdrop-blur-md">
+        <div className="w-full-max-w-sm rounded-3xl border border-white/20 bg-green-950/60 p-6 text-white shadow-xl backdrop-blur-md">
 
             <audio src={currentTrack.src} ref={audioRef} preload="metadata" />
 
@@ -60,7 +60,7 @@ export default function MusicPlayer(){
                 <Music size={24} className="text-lime-200" />
                 <div>
                     <h3 className="font-semibold">Forest Radio</h3>
-                    <p className="text-xstext-green-200">
+                    <p className="text-xs text-green-200">
                         Your peaceful soundtrack
                     </p>
                 </div>
@@ -71,13 +71,13 @@ export default function MusicPlayer(){
                     Choose your music
                 </label>
 
-                <select value={currentTrackIndex} onChange={(e)=> setCurrentTrackIndex(Number(e.target.value))} className="w-full rounded-xl border borer-white/20 bg-green-900 p-3 text-white outline-none focus:border-lime-200">
-                    {tracks.map((track, index) => {
+                <select id="music-track" value={currentTrackIndex} onChange={(e)=> setCurrentTrackIndex(Number(e.target.value))} className="w-full rounded-xl border border-white/20 bg-green-900 p-3 text-white outline-none focus:border-lime-200">
+                    {tracks.map((track, index) => (
 
-                        <option key={track.name} value={index}>
+                        <option key={track.name} value={index} className="bg-green-950 text-white">
                             {track.name} - {track.artist}
                         </option>
-                    })}
+                    ))}
                 </select>
             </div>
 
@@ -85,7 +85,7 @@ export default function MusicPlayer(){
 
                 <div>
 
-                    <p className="font semibold">{currentTrack.name}</p>
+                    <p className="font-semibold">{currentTrack.name}</p>
                     <p className="text-sm text-green-200">
                         {currentTrack.artist}
                     </p>
