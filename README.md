@@ -1,6 +1,9 @@
 # Ghibli Study 🌿
 
-A ghibli themed study dashbord
+A ghibli themed study dashboard
+
+<img width="1517" height="746" alt="image" src="https://github.com/user-attachments/assets/5c80b188-ae50-450a-ac54-a8b3adc17174" />
+
 
 # Description
 
