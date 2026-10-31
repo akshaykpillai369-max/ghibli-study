@@ -5,12 +5,12 @@ import MusicPlayer from "./MusicPlayer";
 
 export default function FocusScreen({onClose}){
 
-    const[time, setTime] = useState(5)
+    const[time, setTime] = useState(25 * 60 )
     const [isRunning, setIsRunning] = useState(true)
     const [showStopConfirm, setShowStopConfirm] = useState(false)
     const [sessionSaved, setSessionSaved] = useState(false)
     const [isCompleted, setIsCompleted] = useState(false)
-    const [breakTime, setBreakTime] = useState(5)
+    const [breakTime, setBreakTime] = useState(5 * 60)
     const [isBreakRunning, setIsBreakRunning] = useState(false)
     const [isBreakCompleted, setIsBreakCompleted] = useState(false)
 

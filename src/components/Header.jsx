@@ -23,10 +23,6 @@ export default function Header(){
 
             </div>
 
-            <button className="p-3 rounded-xl bg-white/10 text-white hover:bg-white/20 transition">
-            <Settings size={22} /> 
-            </button>
-
         </header>
     )
 }

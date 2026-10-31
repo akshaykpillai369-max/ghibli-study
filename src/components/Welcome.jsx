@@ -27,7 +27,7 @@ export default function Welcome({onSave}) {
             </h2>
 
             <p className="mt-3 text-green-100">
-                What should I call you, traveller ?
+                What should I call you?
             </p>
 
             <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your name" maxLength={30} className="mt-6 w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-white/50 focus:border-lime-200" autoFocus/>
