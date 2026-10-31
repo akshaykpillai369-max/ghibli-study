@@ -20,7 +20,7 @@ Ghibli Study is a ghibli, forest themed study dashboard which definetley helps y
 
 # How to try this
 
-It's very simple, go to this link: [will update soon]
+It's very simple, go to this link: https://ghibli-study-beta.vercel.app/
 
 # Tech stack of original
 
