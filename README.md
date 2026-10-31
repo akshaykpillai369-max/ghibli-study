@@ -1,16 +1,67 @@
-# React + Vite
+# Ghibli Study 🌿
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A ghibli themed study dashbord
 
-Currently, two official plugins are available:
+# Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Ghibli Study is a ghibli, forest themed study dashboard which definetley helps you to study things more effectivey because it is packed with so many features. Also this is the remake of original ghibli study and I did this as a part of Hackclub Cont.d program.
 
-## React Compiler
+# Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Pomodoro Timer with 25-minute focus sessions and 5 minute breaks
+- focus mode to reduce distractions
+- music player with lofi tracks to improve concentration(for me it will improve concentration)
+- daily goals, you able to set how many focus sections you will do in a day, once setted for a day, you cannot change the goal for that day.
+- session history - you can see your session history in the main page
+- streaks , yeh, each day you use focus section, that contribute to your streak
+- weekly insights, you can see how much days you worked ina week , you consistency, total sessions in that week and daily average
+- local storage, your name, datas all saved in yourbrowser, so privacy guaranteed
 
-## Expanding the Oxlint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+# How to try this
+
+It's very simple, go to this link: [will update soon]
+
+# Tech stack of original
+
+- HTML
+- CSS
+
+# Tech stack of this
+
+- React
+- Tailwind CSS
+- Lucide React(for icons)
+
+# Make this Ghibli study yours
+
+- Clone this repository
+- Go to the folder(most probably git will make a folder with the name of the project)
+- install dependencies using npm install
+- go to this url : http://localhost:5173/
+
+Congrats!, you hosted it locally!
+
+# Credits
+
+As said, this project is inspired by the original Ghibli study
+
+- original project : https://github.com/squeakycleanfreshie-cloud/Ghibli-Study
+
+- original project demo : https://squeakycleanfreshie-cloud.github.io/Ghibli-Study/
+
+- music(lofi-chill):  https://pixabay.com/music/lofi-lofi-lofi-girl-lofi-chill-484610/
+
+-music(tea) : https://www.unminus.com/tracks/tea
+
+- music(hiphop-lofi) : https://pixabay.com/music/beats-calm-hiphop-lofi-338840/
+
+- Readme format by @FaizeenHoque, given to me by Hackclub pixl team
+
+# AI declaration
+
+I used AI(Chatgpt) for planning, some of the CSS, and helped me to learn new concepts in react like useref. Otherwise all logic is written by me.I did not copy pasted AI outputs, I examined it and customised for me. That's all.
+
+# License
+
+This project is licensed under Akshay License - see the LICENSE file for details.
