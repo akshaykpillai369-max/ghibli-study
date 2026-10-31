@@ -34,6 +34,9 @@ export default function Greeting({name}){
             <p className="mt-3 text-white/90 drop-shadow-md">
              Just study or code for five minutes. That's how progress begins!
             </p>
+            <p className="mt-3 text-white/90 drop-shadow-md">
+             TRY AGAIN • FAIL AGAIN • TRY AGAIN • FAIL AGAIN
+            </p>
         </section>
     )
 }
