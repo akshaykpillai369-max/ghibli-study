@@ -9,6 +9,7 @@ import DailyGoal from "./components/DailyGoal"
 import RecentSessions from "./components/RecentSessions"
 import StreakTracker from "./components/StreakTracker"
 import WeeklyActivity from "./components/DailyActivity"
+import WeeklyInsights from "./components/WeeklyInsights"
 
 export default function App() {
 
@@ -39,9 +40,14 @@ export default function App() {
             <Greeting name={userName}/>
             <DailyGoal/> 
             <PomoStartWidget onstart={() => setIsFocusOpen(true)} />
-            <WeeklyActivity/>
+            
              
           </div>
+
+          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+              <WeeklyActivity />
+              <WeeklyInsights />
+            </div>
           
           <SessionHistory/>
           <RecentSessions/>
